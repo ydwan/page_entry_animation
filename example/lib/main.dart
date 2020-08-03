@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:page_entry_animation/index.dart';
+import 'package:page_entry_animation/page_entry_animation.dart';
 import './container_test.dart';
 
 void main() {
