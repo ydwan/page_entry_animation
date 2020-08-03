@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 /// 动画路由
-class AnimationRoute extends PageRouteBuilder {
+class PageEntryAnimation extends PageRouteBuilder {
   final Widget widget;
-  final AnimationRouteType type;
+  final PageEntryAnimationType type;
   final Color backgroundColor;
   // 是否需要侧滑退出，默认需要
   final bool needSlideOut;
 
-  AnimationRoute(this.widget,
+  PageEntryAnimation(this.widget,
       {this.type, this.backgroundColor, this.needSlideOut})
       : super(
             opaque: false,
@@ -23,19 +23,19 @@ class AnimationRoute extends PageRouteBuilder {
                 Widget child) {
               Tween<Offset> tween;
               switch (type) {
-                case AnimationRouteType.T2B:
+                case PageEntryAnimationType.T2B:
                   tween = Tween<Offset>(
                       begin: Offset(0.0, -1.0), end: Offset(0.0, 0.0));
                   break;
-                case AnimationRouteType.B2T:
+                case PageEntryAnimationType.B2T:
                   tween = Tween<Offset>(
                       begin: Offset(0.0, 1.0), end: Offset(0.0, 0.0));
                   break;
-                case AnimationRouteType.L2R:
+                case PageEntryAnimationType.L2R:
                   tween = Tween<Offset>(
                       begin: Offset(-1.0, 0.0), end: Offset(0.0, 0.0));
                   break;
-                case AnimationRouteType.R2L:
+                case PageEntryAnimationType.R2L:
                 default:
                   tween = Tween<Offset>(
                       begin: Offset(1.0, 0.0), end: Offset(0.0, 0.0));
@@ -46,7 +46,7 @@ class AnimationRoute extends PageRouteBuilder {
                 color = backgroundColor;
               }
               //左右滑动
-              return new RoutePage(
+              return new PageEntry(
                 child: child,
                 backgroundColor: color,
                 type: type,
@@ -57,14 +57,14 @@ class AnimationRoute extends PageRouteBuilder {
             });
 }
 
-class RoutePage extends StatefulWidget {
+class PageEntry extends StatefulWidget {
   final Color backgroundColor;
-  final AnimationRouteType type;
+  final PageEntryAnimationType type;
   final Animation<Offset> animate;
   // 是否需要侧滑退出，默认true
   final bool needSlideOut;
   final Widget child;
-  RoutePage(
+  PageEntry(
       {this.backgroundColor,
       @required this.animate,
       @required this.child,
@@ -72,10 +72,10 @@ class RoutePage extends StatefulWidget {
       this.type});
 
   @override
-  RoutePageState createState() => RoutePageState();
+  PageEntryState createState() => PageEntryState();
 }
 
-class RoutePageState extends State<RoutePage>
+class PageEntryState extends State<PageEntry>
     with SingleTickerProviderStateMixin {
   AnimationController controller;
   Animation<Offset> position;
@@ -94,8 +94,8 @@ class RoutePageState extends State<RoutePage>
     this.positionPercent = 0;
     this.position = widget.animate;
     // 如果是从上往下、或者从左往右加载的页面，不允许它们有侧滑关闭事件，感觉用户体验特别怪异
-    if (widget.type == AnimationRouteType.T2B ||
-        widget.type == AnimationRouteType.L2R) {
+    if (widget.type == PageEntryAnimationType.T2B ||
+        widget.type == PageEntryAnimationType.L2R) {
       this.needSlideOut = false;
     }
   }
@@ -109,15 +109,15 @@ class RoutePageState extends State<RoutePage>
     double percent;
     Tween<Offset> tween;
     switch (widget.type) {
-      case AnimationRouteType.T2B:
-      case AnimationRouteType.B2T:
+      case PageEntryAnimationType.T2B:
+      case PageEntryAnimationType.B2T:
         ratio = 1.3;
         percent = localPosition.dx / size.width * ratio;
         tween = Tween<Offset>(
             begin: Offset(0.0, percent), end: Offset(0.0, percent));
         break;
-      case AnimationRouteType.L2R:
-      case AnimationRouteType.R2L:
+      case PageEntryAnimationType.L2R:
+      case PageEntryAnimationType.R2L:
       default:
         ratio = 1;
         percent = localPosition.dx / size.width * ratio;
@@ -142,13 +142,13 @@ class RoutePageState extends State<RoutePage>
   void logout() {
     Tween<Offset> tween;
     switch (widget.type) {
-      case AnimationRouteType.T2B:
-      case AnimationRouteType.B2T:
+      case PageEntryAnimationType.T2B:
+      case PageEntryAnimationType.B2T:
         tween = Tween<Offset>(
             begin: Offset(0.0, this.positionPercent), end: Offset(0.0, 1));
         break;
-      case AnimationRouteType.L2R:
-      case AnimationRouteType.R2L:
+      case PageEntryAnimationType.L2R:
+      case PageEntryAnimationType.R2L:
       default:
         tween = Tween<Offset>(
             begin: Offset(this.positionPercent, 0.0), end: Offset(1, 0.0));
@@ -220,7 +220,7 @@ class RoutePageState extends State<RoutePage>
   }
 }
 
-enum AnimationRouteType {
+enum PageEntryAnimationType {
   // 从左往右进入
   L2R,
   // 从右往左
