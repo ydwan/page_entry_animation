@@ -1,6 +1,6 @@
 name: page_entry_animation
 description: Flutter 页面进场动画，支持从左往右、从右往左、从上往下以及从下往上。从右往左和从下往上的页面，在安卓上也支持类似IOS左侧滑动推出。
-version: 0.0.1
+version: 0.0.2
 # author:
 homepage: https://github.com/ydwan/page_entry_animation
 repository: https://github.com/ydwan/page_entry_animation
