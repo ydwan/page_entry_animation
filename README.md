@@ -2,15 +2,17 @@
 
 Flutter 页面进场动画，支持从左往右、从右往左、从上往下以及从下往上。从右往左和从下往上的页面，在安卓上也支持类似 IOS 左侧滑动推出。
 
-## Demo
+## 从右往左(R2L)
+![image](https://github.com/ydwan/page_entry_animation/video/R2L.gif)
 
-[![从右往左(R2L)](https://github.com/ydwan/page_entry_animation/video/R2L.gif)](https://github.com/ydwan/page_entry_animation/video/R2L.gif)
+## 从左往右(L2R)
+![image](https://github.com/ydwan/page_entry_animation/video/L2R.gif)
 
-[![从左往右(L2R)](https://github.com/ydwan/page_entry_animation/video/L2R.gif)](https://github.com/ydwan/page_entry_animation/video/L2R.gif)
+## 从下往上(B2T)
+![image](https://github.com/ydwan/page_entry_animation/video/B2T.gif)
 
-[![从下往上(B2T)](https://github.com/ydwan/page_entry_animation/video/B2T.gif)](https://github.com/ydwan/page_entry_animation/video/B2T.gif)
-
-[![从上往下(T2B)](https://github.com/ydwan/page_entry_animation/video/T2B.gif)](https://github.com/ydwan/page_entry_animation/video/T2B.gif)
+## 从上往下(T2B)
+![image](https://github.com/ydwan/page_entry_animation/video/T2B.gif)
 
 ## Widget 参数：
 
