@@ -1,12 +1,32 @@
 # page_entry_animation
 
-Flutter 页面进场动画，支持从左往右、从右往左、从上往下以及从下往上。从右往左和从下往上的页面，在安卓上也支持类似IOS左侧滑动推出。
+Flutter 页面进场动画，支持从左往右、从右往左、从上往下以及从下往上。从右往左和从下往上的页面，在安卓上也支持类似 IOS 左侧滑动推出。
 
 ## Demo
-[![从右往左(R2L)](https://github.com/ydwan/page_entry_animation/video/R2L.mp4)](https://github.com/ydwan/page_entry_animation/video/R2L.mp4)
 
-[![从左往右(L2R)](https://github.com/ydwan/page_entry_animation/video/L2R.mp4)](https://github.com/ydwan/page_entry_animation/video/L2R.mp4)
+[![从右往左(R2L)](https://github.com/ydwan/page_entry_animation/video/R2L.gif)](https://github.com/ydwan/page_entry_animation/video/R2L.gif)
 
-[![从下往上(B2T)](https://github.com/ydwan/page_entry_animation/video/B2T.mp4)](https://github.com/ydwan/page_entry_animation/video/B2T.mp4)
+[![从左往右(L2R)](https://github.com/ydwan/page_entry_animation/video/L2R.gif)](https://github.com/ydwan/page_entry_animation/video/L2R.gif)
 
-[![从上往下(T2B)](https://github.com/ydwan/page_entry_animation/video/T2B.mp4)](https://github.com/ydwan/page_entry_animation/video/T2B.mp4)
+[![从下往上(B2T)](https://github.com/ydwan/page_entry_animation/video/B2T.gif)](https://github.com/ydwan/page_entry_animation/video/B2T.gif)
+
+[![从上往下(T2B)](https://github.com/ydwan/page_entry_animation/video/T2B.gif)](https://github.com/ydwan/page_entry_animation/video/T2B.gif)
+
+## Widget 参数：
+
+| Parameter       | Type                   | Default                    | Description                                                                     |
+| --------------- | ---------------------- | -------------------------- | ------------------------------------------------------------------------------- |
+| widget          | Widget                 | null                       | 传入的页面 Widget                                                               |
+| type            | PageEntryAnimationType | PageEntryAnimationType.R2L | 渲染类型，默认从右往左加载                                                      |
+| backgroundColor | Color                  | null                       | 侧滑退出的背景蒙层颜色                                                          |
+| needSlideOut    | bool                   | true                       | 是否需要左侧滑动退出，默认 true。从上往下(T2B)，从左往右(L2R)类型不支持侧滑退出 |
+
+## 调用示例：
+
+```Dart
+ Navigator.of(context).push(PageEntryAnimation(
+                  ContainerTest(),
+                  backgroundColor: Colors.red,
+                  needSlideOut: true,
+                  type: PageEntryAnimationType.R2L))
+```
